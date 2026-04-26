@@ -1,0 +1,12 @@
+{
+  "properties": {
+    "category": "CognitiveSearch",
+    "target": "https://aiservicesnbrqsearch.search.windows.net",
+    "authType": "AAD",
+    "metadata": {
+      "ApiType": "Azure",
+      "ResourceId": "/subscriptions/<subscription-id>/resourceGroups/networksecu/providers/Microsoft.Search/searchServices/aiservicesnbrqsearch",
+      "location": "eastus"
+    }
+  }
+}

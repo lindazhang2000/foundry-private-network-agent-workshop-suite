@@ -1,0 +1,12 @@
+{
+  "properties": {
+    "category": "AzureStorageAccount",
+    "target": "https://aiservicesnbrqstorage.blob.core.windows.net/",
+    "authType": "AAD",
+    "metadata": {
+      "ApiType": "Azure",
+      "ResourceId": "/subscriptions/<subscription-id>/resourceGroups/networksecu/providers/Microsoft.Storage/storageAccounts/aiservicesnbrqstorage",
+      "location": "eastus"
+    }
+  }
+}

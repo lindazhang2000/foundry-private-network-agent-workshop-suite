@@ -1,0 +1,12 @@
+{
+  "properties": {
+    "category": "CosmosDB",
+    "target": "https://aiservicesnbrqcosmosdb.documents.azure.com:443/",
+    "authType": "AAD",
+    "metadata": {
+      "ApiType": "Azure",
+      "ResourceId": "/subscriptions/<subscription-id>/resourceGroups/networksecu/providers/Microsoft.DocumentDB/databaseAccounts/aiservicesnbrqcosmosdb",
+      "location": "East US 2"
+    }
+  }
+}
