@@ -1,7 +1,7 @@
 {
   "properties": {
-    "roleDefinitionId": "/subscriptions/<subscription-id>/resourceGroups/networksecu/providers/Microsoft.DocumentDB/databaseAccounts/aiservicesnbrqcosmosdb/sqlRoleDefinitions/00000000-0000-0000-0000-000000000002",
-    "principalId": "a8a8b580-fc26-496d-b8e6-622fd093e454",
-    "scope": "/subscriptions/<subscription-id>/resourceGroups/networksecu/providers/Microsoft.DocumentDB/databaseAccounts/aiservicesnbrqcosmosdb"
+    "roleDefinitionId": "/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.DocumentDB/databaseAccounts/<cosmos-account-name>/sqlRoleDefinitions/00000000-0000-0000-0000-000000000002",
+    "principalId": "<principal-id>",
+    "scope": "/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.DocumentDB/databaseAccounts/<cosmos-account-name>"
   }
 }

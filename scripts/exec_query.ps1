@@ -1,5 +1,6 @@
 $ErrorActionPreference='Continue'
-$sub='<subscription-id>'
+$sub = $env:AZURE_SUBSCRIPTION_ID
+if (-not $sub) { throw 'Set AZURE_SUBSCRIPTION_ID before running this script.' }
 $rg='networksecu'
 $cosmos='aiservicesnbrqcosmosdb'
 $storage='aiservicesnbrqstorage'
