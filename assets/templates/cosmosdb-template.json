@@ -2,8 +2,8 @@
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        "databaseAccounts_aiservicesnbrqcosmosdb_name": {
-            "defaultValue": "aiservicesnbrqcosmosdb",
+        "databaseAccountName": {
+            "defaultValue": "<cosmos-account-name>",
             "type": "String"
         }
     },
@@ -12,7 +12,7 @@
         {
             "type": "Microsoft.DocumentDB/databaseAccounts",
             "apiVersion": "2025-11-01-preview",
-            "name": "[parameters('databaseAccounts_aiservicesnbrqcosmosdb_name')]",
+            "name": "[parameters('databaseAccountName')]",
             "location": "East US 2",
             "kind": "GlobalDocumentDB",
             "identity": {
@@ -73,15 +73,15 @@
         {
             "type": "Microsoft.DocumentDB/databaseAccounts/cassandraRoleDefinitions",
             "apiVersion": "2025-11-01-preview",
-            "name": "[concat(parameters('databaseAccounts_aiservicesnbrqcosmosdb_name'), '/00000000-0000-0000-0000-000000000003')]",
+            "name": "[concat(parameters('databaseAccountName'), '/00000000-0000-0000-0000-000000000003')]",
             "dependsOn": [
-                "[resourceId('Microsoft.DocumentDB/databaseAccounts', parameters('databaseAccounts_aiservicesnbrqcosmosdb_name'))]"
+                "[resourceId('Microsoft.DocumentDB/databaseAccounts', parameters('databaseAccountName'))]"
             ],
             "properties": {
                 "roleName": "Cosmos DB Cassandra Built-in Data Reader",
                 "type": "BuiltInRole",
                 "assignableScopes": [
-                    "[resourceId('Microsoft.DocumentDB/databaseAccounts', parameters('databaseAccounts_aiservicesnbrqcosmosdb_name'))]"
+                    "[resourceId('Microsoft.DocumentDB/databaseAccounts', parameters('databaseAccountName'))]"
                 ],
                 "permissions": [
                     {
@@ -100,15 +100,15 @@
         {
             "type": "Microsoft.DocumentDB/databaseAccounts/cassandraRoleDefinitions",
             "apiVersion": "2025-11-01-preview",
-            "name": "[concat(parameters('databaseAccounts_aiservicesnbrqcosmosdb_name'), '/00000000-0000-0000-0000-000000000004')]",
+            "name": "[concat(parameters('databaseAccountName'), '/00000000-0000-0000-0000-000000000004')]",
             "dependsOn": [
-                "[resourceId('Microsoft.DocumentDB/databaseAccounts', parameters('databaseAccounts_aiservicesnbrqcosmosdb_name'))]"
+                "[resourceId('Microsoft.DocumentDB/databaseAccounts', parameters('databaseAccountName'))]"
             ],
             "properties": {
                 "roleName": "Cosmos DB Cassandra Built-in Data Contributor",
                 "type": "BuiltInRole",
                 "assignableScopes": [
-                    "[resourceId('Microsoft.DocumentDB/databaseAccounts', parameters('databaseAccounts_aiservicesnbrqcosmosdb_name'))]"
+                    "[resourceId('Microsoft.DocumentDB/databaseAccounts', parameters('databaseAccountName'))]"
                 ],
                 "permissions": [
                     {
@@ -130,15 +130,15 @@
         {
             "type": "Microsoft.DocumentDB/databaseAccounts/gremlinRoleDefinitions",
             "apiVersion": "2025-11-01-preview",
-            "name": "[concat(parameters('databaseAccounts_aiservicesnbrqcosmosdb_name'), '/00000000-0000-0000-0000-000000000003')]",
+            "name": "[concat(parameters('databaseAccountName'), '/00000000-0000-0000-0000-000000000003')]",
             "dependsOn": [
-                "[resourceId('Microsoft.DocumentDB/databaseAccounts', parameters('databaseAccounts_aiservicesnbrqcosmosdb_name'))]"
+                "[resourceId('Microsoft.DocumentDB/databaseAccounts', parameters('databaseAccountName'))]"
             ],
             "properties": {
                 "roleName": "Cosmos DB Gremlin Built-in Data Reader",
                 "type": "BuiltInRole",
                 "assignableScopes": [
-                    "[resourceId('Microsoft.DocumentDB/databaseAccounts', parameters('databaseAccounts_aiservicesnbrqcosmosdb_name'))]"
+                    "[resourceId('Microsoft.DocumentDB/databaseAccounts', parameters('databaseAccountName'))]"
                 ],
                 "permissions": [
                     {
@@ -157,15 +157,15 @@
         {
             "type": "Microsoft.DocumentDB/databaseAccounts/gremlinRoleDefinitions",
             "apiVersion": "2025-11-01-preview",
-            "name": "[concat(parameters('databaseAccounts_aiservicesnbrqcosmosdb_name'), '/00000000-0000-0000-0000-000000000004')]",
+            "name": "[concat(parameters('databaseAccountName'), '/00000000-0000-0000-0000-000000000004')]",
             "dependsOn": [
-                "[resourceId('Microsoft.DocumentDB/databaseAccounts', parameters('databaseAccounts_aiservicesnbrqcosmosdb_name'))]"
+                "[resourceId('Microsoft.DocumentDB/databaseAccounts', parameters('databaseAccountName'))]"
             ],
             "properties": {
                 "roleName": "Cosmos DB Gremlin Built-in Data Contributor",
                 "type": "BuiltInRole",
                 "assignableScopes": [
-                    "[resourceId('Microsoft.DocumentDB/databaseAccounts', parameters('databaseAccounts_aiservicesnbrqcosmosdb_name'))]"
+                    "[resourceId('Microsoft.DocumentDB/databaseAccounts', parameters('databaseAccountName'))]"
                 ],
                 "permissions": [
                     {
@@ -187,15 +187,15 @@
         {
             "type": "Microsoft.DocumentDB/databaseAccounts/mongoMIRoleDefinitions",
             "apiVersion": "2025-11-01-preview",
-            "name": "[concat(parameters('databaseAccounts_aiservicesnbrqcosmosdb_name'), '/00000000-0000-0000-0000-000000000003')]",
+            "name": "[concat(parameters('databaseAccountName'), '/00000000-0000-0000-0000-000000000003')]",
             "dependsOn": [
-                "[resourceId('Microsoft.DocumentDB/databaseAccounts', parameters('databaseAccounts_aiservicesnbrqcosmosdb_name'))]"
+                "[resourceId('Microsoft.DocumentDB/databaseAccounts', parameters('databaseAccountName'))]"
             ],
             "properties": {
                 "roleName": "Cosmos DB Mongo Built-in Data Reader",
                 "type": "BuiltInRole",
                 "assignableScopes": [
-                    "[resourceId('Microsoft.DocumentDB/databaseAccounts', parameters('databaseAccounts_aiservicesnbrqcosmosdb_name'))]"
+                    "[resourceId('Microsoft.DocumentDB/databaseAccounts', parameters('databaseAccountName'))]"
                 ],
                 "permissions": [
                     {
@@ -214,15 +214,15 @@
         {
             "type": "Microsoft.DocumentDB/databaseAccounts/mongoMIRoleDefinitions",
             "apiVersion": "2025-11-01-preview",
-            "name": "[concat(parameters('databaseAccounts_aiservicesnbrqcosmosdb_name'), '/00000000-0000-0000-0000-000000000004')]",
+            "name": "[concat(parameters('databaseAccountName'), '/00000000-0000-0000-0000-000000000004')]",
             "dependsOn": [
-                "[resourceId('Microsoft.DocumentDB/databaseAccounts', parameters('databaseAccounts_aiservicesnbrqcosmosdb_name'))]"
+                "[resourceId('Microsoft.DocumentDB/databaseAccounts', parameters('databaseAccountName'))]"
             ],
             "properties": {
                 "roleName": "Cosmos DB Mongo Built-in Data Contributor",
                 "type": "BuiltInRole",
                 "assignableScopes": [
-                    "[resourceId('Microsoft.DocumentDB/databaseAccounts', parameters('databaseAccounts_aiservicesnbrqcosmosdb_name'))]"
+                    "[resourceId('Microsoft.DocumentDB/databaseAccounts', parameters('databaseAccountName'))]"
                 ],
                 "permissions": [
                     {
@@ -244,15 +244,15 @@
         {
             "type": "Microsoft.DocumentDB/databaseAccounts/sqlRoleDefinitions",
             "apiVersion": "2025-11-01-preview",
-            "name": "[concat(parameters('databaseAccounts_aiservicesnbrqcosmosdb_name'), '/00000000-0000-0000-0000-000000000001')]",
+            "name": "[concat(parameters('databaseAccountName'), '/00000000-0000-0000-0000-000000000001')]",
             "dependsOn": [
-                "[resourceId('Microsoft.DocumentDB/databaseAccounts', parameters('databaseAccounts_aiservicesnbrqcosmosdb_name'))]"
+                "[resourceId('Microsoft.DocumentDB/databaseAccounts', parameters('databaseAccountName'))]"
             ],
             "properties": {
                 "roleName": "Cosmos DB Built-in Data Reader",
                 "type": "BuiltInRole",
                 "assignableScopes": [
-                    "[resourceId('Microsoft.DocumentDB/databaseAccounts', parameters('databaseAccounts_aiservicesnbrqcosmosdb_name'))]"
+                    "[resourceId('Microsoft.DocumentDB/databaseAccounts', parameters('databaseAccountName'))]"
                 ],
                 "permissions": [
                     {
@@ -270,15 +270,15 @@
         {
             "type": "Microsoft.DocumentDB/databaseAccounts/sqlRoleDefinitions",
             "apiVersion": "2025-11-01-preview",
-            "name": "[concat(parameters('databaseAccounts_aiservicesnbrqcosmosdb_name'), '/00000000-0000-0000-0000-000000000002')]",
+            "name": "[concat(parameters('databaseAccountName'), '/00000000-0000-0000-0000-000000000002')]",
             "dependsOn": [
-                "[resourceId('Microsoft.DocumentDB/databaseAccounts', parameters('databaseAccounts_aiservicesnbrqcosmosdb_name'))]"
+                "[resourceId('Microsoft.DocumentDB/databaseAccounts', parameters('databaseAccountName'))]"
             ],
             "properties": {
                 "roleName": "Cosmos DB Built-in Data Contributor",
                 "type": "BuiltInRole",
                 "assignableScopes": [
-                    "[resourceId('Microsoft.DocumentDB/databaseAccounts', parameters('databaseAccounts_aiservicesnbrqcosmosdb_name'))]"
+                    "[resourceId('Microsoft.DocumentDB/databaseAccounts', parameters('databaseAccountName'))]"
                 ],
                 "permissions": [
                     {
@@ -295,15 +295,15 @@
         {
             "type": "Microsoft.DocumentDB/databaseAccounts/tableRoleDefinitions",
             "apiVersion": "2025-11-01-preview",
-            "name": "[concat(parameters('databaseAccounts_aiservicesnbrqcosmosdb_name'), '/00000000-0000-0000-0000-000000000001')]",
+            "name": "[concat(parameters('databaseAccountName'), '/00000000-0000-0000-0000-000000000001')]",
             "dependsOn": [
-                "[resourceId('Microsoft.DocumentDB/databaseAccounts', parameters('databaseAccounts_aiservicesnbrqcosmosdb_name'))]"
+                "[resourceId('Microsoft.DocumentDB/databaseAccounts', parameters('databaseAccountName'))]"
             ],
             "properties": {
                 "roleName": "Cosmos DB Built-in Data Reader",
                 "type": "BuiltInRole",
                 "assignableScopes": [
-                    "[resourceId('Microsoft.DocumentDB/databaseAccounts', parameters('databaseAccounts_aiservicesnbrqcosmosdb_name'))]"
+                    "[resourceId('Microsoft.DocumentDB/databaseAccounts', parameters('databaseAccountName'))]"
                 ],
                 "permissions": [
                     {
@@ -321,15 +321,15 @@
         {
             "type": "Microsoft.DocumentDB/databaseAccounts/tableRoleDefinitions",
             "apiVersion": "2025-11-01-preview",
-            "name": "[concat(parameters('databaseAccounts_aiservicesnbrqcosmosdb_name'), '/00000000-0000-0000-0000-000000000002')]",
+            "name": "[concat(parameters('databaseAccountName'), '/00000000-0000-0000-0000-000000000002')]",
             "dependsOn": [
-                "[resourceId('Microsoft.DocumentDB/databaseAccounts', parameters('databaseAccounts_aiservicesnbrqcosmosdb_name'))]"
+                "[resourceId('Microsoft.DocumentDB/databaseAccounts', parameters('databaseAccountName'))]"
             ],
             "properties": {
                 "roleName": "Cosmos DB Built-in Data Contributor",
                 "type": "BuiltInRole",
                 "assignableScopes": [
-                    "[resourceId('Microsoft.DocumentDB/databaseAccounts', parameters('databaseAccounts_aiservicesnbrqcosmosdb_name'))]"
+                    "[resourceId('Microsoft.DocumentDB/databaseAccounts', parameters('databaseAccountName'))]"
                 ],
                 "permissions": [
                     {

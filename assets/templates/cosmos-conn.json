@@ -1,7 +1,7 @@
 {
   "properties": {
     "category": "CosmosDB",
-    "target": "https://aiservicesnbrqcosmosdb.documents.azure.com:443/",
+    "target": "https://<cosmos-account-name>.documents.azure.com:443/",
     "authType": "AAD",
     "metadata": {
       "ApiType": "Azure",

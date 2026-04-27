@@ -1,1 +1,1 @@
-{"properties":{"capabilityHostKind":"Agents","vectorStoreConnections":["aiservicesnbrqsearch"],"storageConnections":["aiservicesnbrqstorage"],"threadStorageConnections":["aiservicesnbrqcosmosdb"]}}
+{"properties":{"capabilityHostKind":"Agents","vectorStoreConnections":["<search-connection-name>"],"storageConnections":["<storage-connection-name>"],"threadStorageConnections":["<cosmos-connection-name>"]}}

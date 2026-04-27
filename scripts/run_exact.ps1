@@ -2,9 +2,12 @@ $ErrorActionPreference = 'Stop'
 $sub = $env:AZURE_SUBSCRIPTION_ID
 if (-not $sub) { throw 'Set AZURE_SUBSCRIPTION_ID before running this script.' }
 $rg='networksecu'
-$cosmos='aiservicesnbrqcosmosdb'
-$storage='aiservicesnbrqstorage'
-$search='aiservicesnbrqsearch'
+$cosmos = $env:COSMOS_ACCOUNT_NAME
+if (-not $cosmos) { throw 'Set COSMOS_ACCOUNT_NAME before running this script.' }
+$storage = $env:STORAGE_ACCOUNT_NAME
+if (-not $storage) { throw 'Set STORAGE_ACCOUNT_NAME before running this script.' }
+$search = $env:SEARCH_SERVICE_NAME
+if (-not $search) { throw 'Set SEARCH_SERVICE_NAME before running this script.' }
 $vnet='agent-vnet-test'
 $peSubnet='pe-subnet'
 $peName='cosmosendpoint'

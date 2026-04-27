@@ -1,7 +1,7 @@
 {
   "properties": {
     "category": "CognitiveSearch",
-    "target": "https://aiservicesnbrqsearch.search.windows.net",
+    "target": "https://<search-service-name>.search.windows.net",
     "authType": "AAD",
     "metadata": {
       "ApiType": "Azure",

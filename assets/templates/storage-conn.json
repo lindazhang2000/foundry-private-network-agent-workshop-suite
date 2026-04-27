@@ -1,7 +1,7 @@
 {
   "properties": {
     "category": "AzureStorageAccount",
-    "target": "https://aiservicesnbrqstorage.blob.core.windows.net/",
+    "target": "https://<storage-account-name>.blob.core.windows.net/",
     "authType": "AAD",
     "metadata": {
       "ApiType": "Azure",
