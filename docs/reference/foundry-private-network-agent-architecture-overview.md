@@ -95,7 +95,7 @@ flowchart LR
 ### 1.3 Technical View (Implementation Detail)
 
 ```mermaid
-%%{init: {"themeVariables": {"fontSize": "22px", "edgeLabelBackground": "#2F3136"}}}%%
+%%{init: {"themeVariables": {"fontSize": "22px"}}}%%
 flowchart LR
   U[Workshop User or Operator]
 
