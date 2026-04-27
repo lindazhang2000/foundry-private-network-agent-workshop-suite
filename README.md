@@ -55,12 +55,12 @@ foundry-private-network-agent-workshop-suite/
 
 ## Suggested Start Points
 
-- Architecture summary: `docs/reference/foundry-private-network-agent-architecture-overview.md`
-- First read: `docs/reference/foundry-private-network-agent-guide.md`
-- Full hands-on delivery: `docs/workshops/foundry-private-network-agent-hands-on-workshop.md`
-- Fast 2-hour run: `docs/workshops/foundry-private-network-agent-hands-on-workshop-2h.md`
-- Executive briefing: `docs/workshops/foundry-private-network-agent-workshop-executive-demo.md`
-- Internal trainer operations: `docs/workshops/foundry-private-network-agent-workshop-internal-trainer-playbook.md`
+- Architecture summary: [docs/reference/foundry-private-network-agent-architecture-overview.md](docs/reference/foundry-private-network-agent-architecture-overview.md)
+- First read: [docs/reference/foundry-private-network-agent-guide.md](docs/reference/foundry-private-network-agent-guide.md)
+- Full hands-on delivery: [docs/workshops/foundry-private-network-agent-hands-on-workshop.md](docs/workshops/foundry-private-network-agent-hands-on-workshop.md)
+- Fast 2-hour run: [docs/workshops/foundry-private-network-agent-hands-on-workshop-2h.md](docs/workshops/foundry-private-network-agent-hands-on-workshop-2h.md)
+- Executive briefing: [docs/workshops/foundry-private-network-agent-workshop-executive-demo.md](docs/workshops/foundry-private-network-agent-workshop-executive-demo.md)
+- Internal trainer operations: [docs/workshops/foundry-private-network-agent-workshop-internal-trainer-playbook.md](docs/workshops/foundry-private-network-agent-workshop-internal-trainer-playbook.md)
 
 ## Local Usage
 
