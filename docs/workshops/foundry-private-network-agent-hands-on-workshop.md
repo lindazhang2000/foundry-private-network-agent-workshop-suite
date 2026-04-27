@@ -328,3 +328,18 @@ Use base guide cleanup section. If this is a shared subscription, confirm with f
 ---
 
 If needed, this workshop can be extended with a Day 2 module for CI/CD deployment, policy controls, and automated post-deployment validation.
+
+## Screenshot Placeholders
+
+Store full-workshop screenshots in `assets/screenshots/hands-on/`.
+
+- `01-network-foundation.png`
+- `02-private-endpoints-approved.png`
+- `03-project-connections-aad.png`
+- `04-project-caphost-succeeded.png`
+- `05-agent-tool-validation.png`
+
+Optional markdown placeholders:
+
+![Network Foundation](../../assets/screenshots/hands-on/01-network-foundation.png)
+![Project Capability Host Succeeded](../../assets/screenshots/hands-on/04-project-caphost-succeeded.png)

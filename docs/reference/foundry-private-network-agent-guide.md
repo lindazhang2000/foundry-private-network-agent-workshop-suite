@@ -6,6 +6,8 @@ This guide walks you through manually creating a fully network-isolated Foundry 
 
 > Based on the [15-private-network-standard-agent-setup](https://github.com/microsoft-foundry/foundry-samples/tree/main/infrastructure/infrastructure-setup-bicep/15-private-network-standard-agent-setup) template and lessons learned from real troubleshooting.
 
+For a concise diagram-first summary, see `foundry-private-network-agent-architecture-overview.md`.
+
 ---
 
 ## Architecture Overview
@@ -811,3 +813,22 @@ Start-Sleep -Seconds 120
 10. Post-capability host container-level RBAC
 11. Create agent in portal, add tools, test
 ```
+
+---
+
+## Screenshot Placeholders
+
+Store reference screenshots in `assets/screenshots/reference/` and use these stable names:
+
+- `01-architecture-overview.png`
+- `02-private-endpoints-approved.png`
+- `03-private-dns-records.png`
+- `04-project-connections-aad.png`
+- `05-project-caphost-succeeded.png`
+- `06-agent-tool-validation.png`
+
+Optional markdown placeholders:
+
+![Architecture Overview](../../assets/screenshots/reference/01-architecture-overview.png)
+![Private Endpoints Approved](../../assets/screenshots/reference/02-private-endpoints-approved.png)
+![Project Capability Host Succeeded](../../assets/screenshots/reference/05-project-caphost-succeeded.png)

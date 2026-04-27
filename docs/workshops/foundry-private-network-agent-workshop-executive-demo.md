@@ -105,3 +105,16 @@ Recommend a 90-minute technical deep dive that covers:
 - CI/CD automation of the deployment order
 - Policy enforcement and drift checks
 - Operational runbooks for capability host and RBAC break/fix
+
+## Screenshot Placeholders
+
+Store executive-demo visuals in `assets/screenshots/executive-demo/`.
+
+- `01-executive-view-slide-friendly.png`
+- `02-private-endpoints-approved.png`
+- `03-project-connections-aad.png`
+- `04-agent-demo-success.png`
+
+Optional markdown placeholder:
+
+![Executive Demo Proof](../../assets/screenshots/executive-demo/01-executive-view-slide-friendly.png)

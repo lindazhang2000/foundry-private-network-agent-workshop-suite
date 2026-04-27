@@ -149,3 +149,17 @@ Speaker notes:
 
 Speaker notes:
 - Keep appendix in deck for troubleshooting support.
+
+## Screenshot Placeholders
+
+Store slide visuals in `assets/screenshots/slide-outline/`.
+
+- `01-keynote-view-6-box.png`
+- `02-executive-view-slide-friendly.png`
+- `03-technical-view-implementation-detail.png`
+- `04-private-endpoint-evidence.png`
+- `05-final-validation-checklist.png`
+
+Optional markdown placeholder:
+
+![Slide Architecture Visual](../../assets/screenshots/slide-outline/02-executive-view-slide-friendly.png)

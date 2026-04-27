@@ -149,3 +149,15 @@ After each workshop, update:
 - Timing assumptions per module
 - Troubleshooting symptom table based on new incidents
 - Preflight checks for newly observed quota or policy constraints
+
+## Screenshot Placeholders
+
+Store trainer-specific visuals in `assets/screenshots/trainer-playbook/`.
+
+- `01-technical-view-implementation-detail.png`
+
+Optional extras (capture only if useful for your delivery): gate status board, common failure pattern, recovery walkthrough, and final evidence pack.
+
+Optional markdown placeholder:
+
+![Trainer Technical View](../../assets/screenshots/trainer-playbook/01-technical-view-implementation-detail.png)

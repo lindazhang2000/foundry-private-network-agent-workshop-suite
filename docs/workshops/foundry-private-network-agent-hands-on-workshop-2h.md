@@ -151,3 +151,17 @@ Workshop is successful if all are true:
 Clean up to avoid cost:
 1. Delete project capability host.
 2. Delete resource group.
+
+## Screenshot Placeholders
+
+Store condensed-workshop screenshots in `assets/screenshots/hands-on-2h/`.
+
+- `01-timebox-overview.png`
+- `02-private-endpoints-approved.png`
+- `03-project-caphost-succeeded.png`
+- `04-final-validation-summary.png`
+
+Optional markdown placeholders:
+
+![Private Endpoints Approved](../../assets/screenshots/hands-on-2h/02-private-endpoints-approved.png)
+![Final Validation Summary](../../assets/screenshots/hands-on-2h/04-final-validation-summary.png)

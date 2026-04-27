@@ -142,3 +142,12 @@ Fix applied: ____________________________________________
 - Agent test completed: Yes / No
 
 Facilitator initials: ____________________
+
+## 11. Screenshot Capture Log (Optional)
+
+If your team captured evidence images, store them in `assets/screenshots/hands-on/` and record file names here:
+
+- Architecture screenshot: ____________________
+- Private endpoints screenshot: ____________________
+- Project capability host screenshot: ____________________
+- Agent validation screenshot: ____________________

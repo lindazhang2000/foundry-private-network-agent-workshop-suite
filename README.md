@@ -36,6 +36,16 @@ foundry-private-network-agent-workshop-suite/
       search-conn.json
       cosmos-role-proj.json
       cosmosdb-template.json
+    screenshots/
+      README.md
+      readme/
+      reference/
+      hands-on/
+      hands-on-2h/
+      executive-demo/
+      trainer-playbook/
+      slide-outline/
+      worksheet-answer-key/
   infra/
     deploy-project-caphost.bicep
   scripts/
@@ -45,6 +55,7 @@ foundry-private-network-agent-workshop-suite/
 
 ## Suggested Start Points
 
+- Architecture summary: `docs/reference/foundry-private-network-agent-architecture-overview.md`
 - First read: `docs/reference/foundry-private-network-agent-guide.md`
 - Full hands-on delivery: `docs/workshops/foundry-private-network-agent-hands-on-workshop.md`
 - Fast 2-hour run: `docs/workshops/foundry-private-network-agent-hands-on-workshop-2h.md`
@@ -62,3 +73,15 @@ foundry-private-network-agent-workshop-suite/
 
 - The workshop content assumes Azure CLI access and required Azure permissions.
 - Keep sensitive values out of committed files.
+
+## Screenshot Evidence Pack
+
+If you captured deployment screenshots from your subscription, add them under `assets/screenshots/`.
+
+- Folder and naming guidance: `assets/screenshots/README.md`
+- Recommended README hero image folder: `assets/screenshots/readme/`
+- Technical evidence images: `assets/screenshots/reference/`
+
+Suggested hero screenshots for this page:
+- `assets/screenshots/readme/01-architecture-overview.png`
+- `assets/screenshots/readme/02-private-endpoints-approved.png`

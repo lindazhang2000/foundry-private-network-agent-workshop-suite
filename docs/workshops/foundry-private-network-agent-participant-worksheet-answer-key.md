@@ -129,3 +129,17 @@ Mark workshop as passed when all are true:
 - Four private endpoints approved
 - At least one model deployment present
 - Agent playground test succeeds with tool flow
+
+## 11. Screenshot Placeholders for Facilitators
+
+Store expected-outcome screenshots in `assets/screenshots/worksheet-answer-key/`.
+
+- `01-account-caphost-succeeded.png`
+- `02-project-caphost-succeeded.png`
+- `03-project-connections-aad.png`
+- `04-private-endpoints-approved.png`
+- `05-agent-playground-success.png`
+
+Optional markdown placeholder:
+
+![Expected Agent Playground Success](../../assets/screenshots/worksheet-answer-key/05-agent-playground-success.png)
