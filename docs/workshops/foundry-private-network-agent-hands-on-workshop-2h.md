@@ -1,6 +1,6 @@
 # 2-Hour Workshop: Private Network Azure AI Foundry Agent (Condensed)
 
-Author: Linda Zhang | AI APP GBB  
+
 Condensed format: GitHub Copilot
 Series: Private Network Foundry Agent Workshop Suite  
 Version: 2026-04-26  
