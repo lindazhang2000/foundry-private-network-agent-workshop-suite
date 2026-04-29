@@ -1,6 +1,6 @@
 # Step-by-Step: Create Azure AI Foundry Agent with Private Network (E2E)
 
-**Author:** Linda Zhang | AI APP GBB
+
 
 This guide walks you through manually creating a fully network-isolated Foundry agent environment from scratch, including every resource, RBAC role, connection, and capability host needed.
 
