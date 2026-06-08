@@ -6,7 +6,7 @@
     "metadata": {
       "ApiType": "Azure",
       "ResourceId": "/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.Search/searchServices/<search-service-name>",
-      "location": "eastus"
+      "location": "<region>"
     }
   }
 }

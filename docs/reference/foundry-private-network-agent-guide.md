@@ -69,7 +69,7 @@ az provider register --namespace 'Microsoft.KeyVault'
 az provider register --namespace 'Microsoft.ContainerService'
 ```
 
-5. **Supported regions for Class A subnets:** Australia East, Brazil South, Canada East, East US, East US 2, France Central, Germany West Central, Italy North, Japan East, South Africa North, South Central US, South India, Spain Central, Sweden Central, UAE North, UK South, West Europe, West US, West US 3
+5. **VNet address-space region constraint:** This guide uses `192.168.0.0/16` (Class C), which works in any Azure region. If you instead choose a **Class A** range (`10.x.x.x`), it is only supported in: Australia East, Brazil South, Canada East, East US, East US 2, France Central, Germany West Central, Italy North, Japan East, South Africa North, South Central US, South India, Spain Central, Sweden Central, UAE North, UK South, West Europe, West US, West US 3. Use Class B (`172.16.x.x`) or C (`192.168.x.x`) ranges elsewhere.
 
 ---
 
@@ -233,7 +233,9 @@ az rest --method put `
   --body "@account-body.json"
 ```
 
-> This creates the account AND the **account-level capability host** (VNet injection). Wait for it to succeed before proceeding.
+> This creates the account AND the **account-level capability host** (the platform creates it implicitly because `networkInjections.scenario = "agent"` is set). Wait for it to succeed before proceeding.
+>
+> **Important:** Only one account-level capability host per Foundry account is allowed. Do **not** attempt to create a second one explicitly (e.g. via `PUT .../accounts/{name}/capabilityHosts/{name}`) — it will fail with `Conflict`. If you ever need to recreate it (after running `deleteCapHost.sh` against an existing account), use the upstream `add-account-capability-host.bicep` module with the opt-in flag.
 
 ### 5a. Deploy a Model
 
@@ -490,11 +492,14 @@ az rest --method put `
 ### 8a. Storage Roles
 
 ```powershell
-# Storage Blob Data Owner (account level — needed for capability host provisioning)
+# Storage Blob Data Contributor at the account scope is required for the project
+# managed identity to enumerate/access blob containers during agent runtime.
+# (Container-scoped Storage Blob Data Owner on the *-agents-blobstore container
+#  is applied AFTER the capability host is created — see Step 10a.)
 az role assignment create `
   --assignee-object-id $PROJECT_MI `
   --assignee-principal-type ServicePrincipal `
-  --role "Storage Blob Data Owner" `
+  --role "Storage Blob Data Contributor" `
   --scope $STORAGE_ID
 ```
 
@@ -622,21 +627,39 @@ After the capability host is created, it provisions storage containers and Cosmo
 ### 10a. Storage Container Roles
 
 ```powershell
-# Get the project workspace ID (internal ID)
+# Get the project workspace ID (internal ID). This is the GUID prefix the
+# capability host uses to name the auto-provisioned blob containers.
 $WORKSPACE_ID = az rest --method get `
   --url "https://management.azure.com/subscriptions/${SUBSCRIPTION}/resourceGroups/${RG}/providers/Microsoft.CognitiveServices/accounts/${ACCT_NAME}/projects/${PROJECT_NAME}?api-version=2025-04-01-preview" `
   --query "properties.internalId" -o tsv
 
-# Format workspace ID (replace hyphens, take first 8 chars for container name)
-# The capability host creates two containers:
-#   {workspaceId}-azureml-blobstore
-#   {workspaceId}-agents-blobstore
-# Assign Storage Blob Data Owner on each container
+# Container names follow: {workspaceId}-azureml-blobstore and {workspaceId}-agents-blobstore.
+# The internalId is a 32-char hex string; the container prefix uses it as-is (no hyphens).
+$AGENTS_CONTAINER  = "${WORKSPACE_ID}-agents-blobstore"
+$AZUREML_CONTAINER = "${WORKSPACE_ID}-azureml-blobstore"
 
 Write-Output "Workspace ID: $WORKSPACE_ID"
-Write-Output "Check your storage account for containers starting with this ID"
-Write-Output "Assign Storage Blob Data Owner to the project managed identity on these containers"
+Write-Output "Agents container:  $AGENTS_CONTAINER"
+Write-Output "AzureML container: $AZUREML_CONTAINER"
+
+# Storage Blob Data Owner on the agents-blobstore container (write/manage agent files)
+az role assignment create `
+  --assignee-object-id $PROJECT_MI `
+  --assignee-principal-type ServicePrincipal `
+  --role "Storage Blob Data Owner" `
+  --scope "${STORAGE_ID}/blobServices/default/containers/${AGENTS_CONTAINER}"
+
+# Storage Blob Data Contributor on the azureml-blobstore container (workspace artifacts)
+az role assignment create `
+  --assignee-object-id $PROJECT_MI `
+  --assignee-principal-type ServicePrincipal `
+  --role "Storage Blob Data Contributor" `
+  --scope "${STORAGE_ID}/blobServices/default/containers/${AZUREML_CONTAINER}"
 ```
+
+> If the role assignment fails with `ScopeNotFound`, the capability host has not yet finished
+> provisioning the containers. Wait 1-2 minutes and retry, or verify the containers exist:
+> `az storage container list --account-name $STORAGE_NAME --auth-mode login -o table`.
 
 ### 10b. Cosmos Container Roles
 
@@ -747,7 +770,7 @@ az role assignment list --scope $SEARCH_ID --assignee $PROJECT_MI --query "[].ro
 - ✅ 6 DNS zones each with A records
 - ✅ 4 private endpoints all `Approved`
 - ✅ At least 1 model deployment
-- ✅ Storage: `Storage Blob Data Owner`
+- ✅ Storage (account scope): `Storage Blob Data Contributor` (plus container-scoped `Storage Blob Data Owner` on the `*-agents-blobstore` container after capability host creation)
 - ✅ Cosmos: `Cosmos DB Operator` (+ SQL Built-in Data Contributor via data-plane)
 - ✅ Search: `Search Index Data Contributor`, `Search Service Contributor`
 
@@ -788,13 +811,14 @@ Start-Sleep -Seconds 120
 
 | Target Resource | Role | Assigned To | When |
 |-----------------|------|-------------|------|
-| Storage Account | Storage Blob Data Owner | Project managed identity | Before capability host |
+| Storage Account | Storage Blob Data Contributor | Project managed identity | Before capability host |
 | Cosmos DB | Cosmos DB Operator | Project managed identity | Before capability host |
 | Cosmos DB | SQL Built-in Data Contributor (`00000000-...-000002`) | Project managed identity | Before capability host |
 | AI Search | Search Index Data Contributor | Project managed identity | Before capability host |
 | AI Search | Search Service Contributor | Project managed identity | Before capability host |
 | AI Services Account | Cognitive Services OpenAI User | Project managed identity | For Search embedding tools |
-| Storage Containers | Storage Blob Data Owner | Project managed identity | After capability host |
+| `*-agents-blobstore` container | Storage Blob Data Owner | Project managed identity | After capability host |
+| `*-azureml-blobstore` container | Storage Blob Data Contributor | Project managed identity | After capability host |
 
 ---
 

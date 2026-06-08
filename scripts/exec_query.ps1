@@ -1,19 +1,19 @@
 $ErrorActionPreference='Continue'
 $sub = $env:AZURE_SUBSCRIPTION_ID
 if (-not $sub) { throw 'Set AZURE_SUBSCRIPTION_ID before running this script.' }
-$rg='networksecu'
+$rg = if ($env:AZURE_RESOURCE_GROUP) { $env:AZURE_RESOURCE_GROUP } else { 'networksecu' }
 $cosmos = $env:COSMOS_ACCOUNT_NAME
 if (-not $cosmos) { throw 'Set COSMOS_ACCOUNT_NAME before running this script.' }
 $storage = $env:STORAGE_ACCOUNT_NAME
 if (-not $storage) { throw 'Set STORAGE_ACCOUNT_NAME before running this script.' }
 $search = $env:SEARCH_SERVICE_NAME
 if (-not $search) { throw 'Set SEARCH_SERVICE_NAME before running this script.' }
-$vnet='agent-vnet-test'
-$peSubnet='pe-subnet'
+$vnet = if ($env:VNET_NAME) { $env:VNET_NAME } else { 'agent-vnet' }
+$peSubnet = if ($env:PE_SUBNET_NAME) { $env:PE_SUBNET_NAME } else { 'pe-subnet' }
 $peName='cosmosendpoint'
 $peConn='cosmosendpoint-conn'
 $dnsZone='privatelink.documents.azure.com'
-$dnsLink='agent-vnet-test-link-docs'
+$dnsLink = "$vnet-link-docs"
 
 az account set --subscription $sub
 $cosmosId = az cosmosdb show -g $rg -n $cosmos --subscription $sub --query id -o tsv

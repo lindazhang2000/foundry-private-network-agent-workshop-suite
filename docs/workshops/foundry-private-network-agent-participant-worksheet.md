@@ -92,7 +92,7 @@ RBAC evidence:
 
 | Scope | Required role | Present (Y/N) |
 |---|---|---|
-| Storage account | Storage Blob Data Owner |  |
+| Storage account | Storage Blob Data Contributor |  |
 | Cosmos DB | Cosmos DB Operator |  |
 | Cosmos DB | SQL Built-in Data Contributor |  |
 | Search | Search Index Data Contributor |  |

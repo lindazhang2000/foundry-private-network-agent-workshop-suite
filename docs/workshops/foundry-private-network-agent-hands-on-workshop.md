@@ -226,7 +226,7 @@ Create project-level identities and grant least required roles before project ca
    - `CognitiveSearch`
 3. Capture project managed identity object id.
 4. Assign RBAC before project capability host:
-   - Storage Blob Data Owner on storage account scope
+   - Storage Blob Data Contributor on storage account scope (container-scoped Owner on `*-agents-blobstore` is applied after capability host)
    - Cosmos DB Operator on Cosmos account scope
    - Cosmos SQL Built-in Data Contributor data-plane role
    - Search Index Data Contributor and Search Service Contributor on search scope

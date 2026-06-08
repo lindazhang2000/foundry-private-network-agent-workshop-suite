@@ -75,7 +75,7 @@ Expected project connections:
 - Category `CognitiveSearch`, authType `AAD`
 
 Required RBAC before project capability host:
-- Storage Blob Data Owner on storage account scope
+- Storage Blob Data Contributor on storage account scope (container-scoped Owner on `*-agents-blobstore` applied after capability host)
 - Cosmos DB Operator on cosmos account scope
 - Cosmos SQL Built-in Data Contributor (data-plane role assignment)
 - Search Index Data Contributor on search scope

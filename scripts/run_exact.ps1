@@ -1,19 +1,19 @@
 $ErrorActionPreference = 'Stop'
 $sub = $env:AZURE_SUBSCRIPTION_ID
 if (-not $sub) { throw 'Set AZURE_SUBSCRIPTION_ID before running this script.' }
-$rg='networksecu'
+$rg = if ($env:AZURE_RESOURCE_GROUP) { $env:AZURE_RESOURCE_GROUP } else { 'networksecu' }
 $cosmos = $env:COSMOS_ACCOUNT_NAME
 if (-not $cosmos) { throw 'Set COSMOS_ACCOUNT_NAME before running this script.' }
 $storage = $env:STORAGE_ACCOUNT_NAME
 if (-not $storage) { throw 'Set STORAGE_ACCOUNT_NAME before running this script.' }
 $search = $env:SEARCH_SERVICE_NAME
 if (-not $search) { throw 'Set SEARCH_SERVICE_NAME before running this script.' }
-$vnet='agent-vnet-test'
-$peSubnet='pe-subnet'
+$vnet = if ($env:VNET_NAME) { $env:VNET_NAME } else { 'agent-vnet' }
+$peSubnet = if ($env:PE_SUBNET_NAME) { $env:PE_SUBNET_NAME } else { 'pe-subnet' }
 $peName='cosmosendpoint'
 $peConn='cosmosendpoint-conn'
 $dnsZone='privatelink.documents.azure.com'
-$dnsLink='agent-vnet-test-link-docs'
+$dnsLink = "$vnet-link-docs"
 $dnsZoneGroup='default'
 
 az account set --subscription $sub | Out-Null
@@ -48,11 +48,21 @@ function Ensure-RoleAssignment {
 }
 
 # Ensure Search + Cosmos roles
+# Note: 'Cosmos DB Built-in Data Contributor' is a SQL data-plane role and must be
+# assigned via `az cosmosdb sql role assignment create`, NOT via `az role assignment create`.
+$sqlDataContributorRoleId = "$cosmosId/sqlRoleDefinitions/00000000-0000-0000-0000-000000000002"
 foreach ($pid in $targetPrincipalIds) {
   Ensure-RoleAssignment -Scope $searchId -PrincipalId $pid -RoleName 'Search Index Data Contributor'
   Ensure-RoleAssignment -Scope $searchId -PrincipalId $pid -RoleName 'Search Service Contributor'
   Ensure-RoleAssignment -Scope $cosmosId -PrincipalId $pid -RoleName 'Cosmos DB Operator'
-  Ensure-RoleAssignment -Scope $cosmosId -PrincipalId $pid -RoleName 'Cosmos DB Built-in Data Contributor'
+
+  $existingSqlRole = az cosmosdb sql role assignment list -g $rg -a $cosmos --subscription $sub --query "[?principalId=='$pid' && roleDefinitionId=='$sqlDataContributorRoleId'] | length(@)" -o tsv
+  if ($existingSqlRole -eq '0') {
+    az cosmosdb sql role assignment create -g $rg -a $cosmos --subscription $sub --role-definition-id $sqlDataContributorRoleId --principal-id $pid --scope '/' -o none
+    Write-Output "CREATED Cosmos SQL Built-in Data Contributor for principal $pid"
+  } else {
+    Write-Output "SKIPPED Cosmos SQL Built-in Data Contributor for principal $pid (already exists)"
+  }
 }
 
 # Ensure private DNS zone for Cosmos
@@ -103,3 +113,6 @@ az role assignment list --scope $cosmosId --subscription $sub --query "[].{princ
 
 Write-Output '--- Verification: Search Scope Roles ---'
 az role assignment list --scope $searchId --subscription $sub --query "[].{principal:principalName,role:roleDefinitionName}" -o json
+
+Write-Output '--- Verification: Cosmos SQL Data-Plane Roles ---'
+az cosmosdb sql role assignment list -g $rg -a $cosmos --subscription $sub --query "[].{principalId:principalId,roleDefinitionId:roleDefinitionId,scope:scope}" -o json

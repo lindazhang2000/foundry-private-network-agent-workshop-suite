@@ -95,7 +95,7 @@ Checkpoint D:
 2. Create three project connections (Cosmos, Storage, Search) with AAD auth.
 3. Capture project managed identity object id.
 4. Assign RBAC roles before project capability host:
-   - Storage Blob Data Owner
+   - Storage Blob Data Contributor (account scope; container-scoped Owner on `*-agents-blobstore` is applied after capability host)
    - Cosmos DB Operator
    - Cosmos SQL Built-in Data Contributor
    - Search Index Data Contributor

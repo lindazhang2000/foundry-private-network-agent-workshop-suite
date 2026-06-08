@@ -29,8 +29,6 @@ foundry-private-network-agent-workshop-suite/
   assets/
     templates/
       caphost.json
-      caphost2.json
-      caphost3.json
       cosmos-conn.json
       storage-conn.json
       search-conn.json
